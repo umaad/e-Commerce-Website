@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login | Registration</title>
+        <link rel="stylesheet" href="css/login.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
+        <script src="js/login.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    </head>
+    <body>
+        <div class="container">
+            <!-- here starts container content-->
+            <div class="forms">
+                <form action="#" class="cod-form" id="form1">
+                    <div class="form-title">
+                        <h3>Login</h3>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" class="form-input" id="email" required>
+                        <label class="label" for="email">Email</label>
+                        <small id="email-check" class="error-msg">*Email is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="form-input" id="password" required>
+                        <label class="label" for="password">Password</label>
+                        <small id="password-check" class="error-msg">*Password is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" class="form-input" value="Login Now" id="submit-login">
+                        <p>Not a member? <a href="#" class="alt-form">Register now</a></p>
+                    </div>
+                </form>
+            </div>
+            <div class="forms">
+                <form action="#" class="cod-form" id="form2">
+                    <div class="form-title">
+                        <h3>Become a member</h3>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="form-input" id="username" required>
+                        <label class="label" for="username">Username</label>
+                        <small id="usr-check" class="error-msg">*Username is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="form-input" id="first-name" required>
+                        <label class="label" for="first-name">First Name</label>
+                        <small id="name-check" class="error-msg">*First name is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="text" class="form-input" id="last-name" required>
+                        <label class="label" for="last-name-check">Last Name</label>
+                        <small id="last-name-check" class="error-msg">*Last name is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="tel" class="form-input" id="phone-num" placeholder=" " pattern="0-9]{3}-[0-9]{3}-[0-9]{4}" required>
+                        <label class="label" for="phone-num">Phone Number</label>
+                        <small id="phone-check" class="error-msg">*Phone Number is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="email" class="form-input" id="reg-email" required>
+                        <label class="label" for="reg-email">Email</label>
+                        <small id="reg-email-check" class="error-msg">*Email is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="form-input" id="reg-pass" required>
+                        <label class="label" for="reg-pass">Password</label>
+                        <small id="pass-check" class="error-msg">*Password is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="password" class="form-input" id="re-pass" required>
+                        <label class="label" for="re-pass">Repeat Password</label>
+                        <small id="re-pass-check" class="error-msg">*Repeat Password is required</small>
+                    </div>
+                    <div class="input-field">
+                        <input type="submit" class="form-input" value="Register Now" id="submit-reg">
+                        <p>Already a member? <a href="#" class="alt-form">Login now</a></p>
+                    </div>
+                </form>
+            </div>
+            <!-- here ends -->
+        </div>
+        <script >
+        $('#submit-login').on('click',function(){
+        if( $("#email").val().trim() == localStorage.getItem("email") && $("#password").val().trim() == localStorage.getItem("password"))
+        {
+            swal({
+            title: "Welcome",
+            text: localStorage.getItem("username"),
+            icon: "success",
+            position: 'top-end'
+            }).then(function() {
+            window.location = "index.html";
+            });
+        }
+        else{
+            swal({
+            title: "Oops!",
+            text: 'Invalid Login',
+            icon: "warning",
+            position: 'top-end'
+            }).then(function() {
+            window.location = "login.html";
+            });
+        }
+        });
+        $('#submit-reg').on('click',function(){
+        localStorage.setItem("username", $("#username").val().trim());
+        localStorage.setItem("firstname", $("#first-name").val().trim());
+        localStorage.setItem("lastname", $("#last-name").val().trim());
+        localStorage.setItem("phonenum", $("#phone-num").val().trim());
+        localStorage.setItem("email", $("#reg-email").val().trim());
+        localStorage.setItem("password", $("#reg-pass").val().trim());
+        swal({
+            title: "Welcome",
+            text: 'Successfully Registered !',
+            type: "success",
+            position: 'top-end'
+            }).then(function() {
+            window.location = "login.html";
+            });
+        });
+        
+        </script>
+        
+    </body>
+</html>
